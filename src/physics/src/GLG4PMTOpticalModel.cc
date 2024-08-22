@@ -50,7 +50,8 @@ GLG4PMTOpticalModel::GLG4PMTOpticalModel(G4String modelName, G4Region *envelope_
     : G4VFastSimulationModel(modelName, envelope_region) {
   surfaceTolerance = G4GeometryTolerance::GetInstance()->GetSurfaceTolerance();
   _verbosity = 0;
-  _luxlevel = 3;
+  //_luxlevel = 3;
+  _luxlevel = 0;
   _efficiency_correction = efficiency_correction;
   _dynodeTop = dynodeTop;
   _dynodeRadius = dynodeRadius;
