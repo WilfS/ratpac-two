@@ -9,6 +9,7 @@
 #include <G4UImanager.hh>
 #include <G4UnitsTable.hh>
 #include <G4ios.hh>
+//#include <CLHEP/Units/PhysicalConstants.h>
 #include <RAT/GeoFiberSensitiveDetector.hh>
 #include <RAT/GeoFiberSensitiveDetectorHit.hh>
 #include <RAT/Log.hh>
@@ -47,6 +48,7 @@ void GeoFiberSensitiveDetector::Initialize(G4HCofThisEvent *HCE) {
   _hit_z.clear();
   _hit_E.clear();
   _hit_time.clear();
+  _hit_KE.clear();
   _hit_uid.clear();
   _hit_pdg.clear();
   _hit_volume.clear();
@@ -79,6 +81,7 @@ G4bool GeoFiberSensitiveDetector::ProcessHits(G4Step *aStep, G4TouchableHistory 
 	  G4Track *aTrack = aStep->GetTrack();
 	  G4ParticleDefinition *part = aTrack->GetDefinition();
 	  int pdg = part->GetPDGEncoding();
+		G4double hitKE = aTrack->GetKineticEnergy();
 
 	  debug << "  track information: " << newline << "    G4Track Pointer: " << aTrack << newline
 		      << "    Particle Definition Pointer: " << part << newline << "    Particle PDG Encoding: " << pdg
@@ -153,6 +156,7 @@ G4bool GeoFiberSensitiveDetector::ProcessHits(G4Step *aStep, G4TouchableHistory 
 	    _hit_z.push_back(worldPos.z());
 	    _hit_E.push_back(edep);
 	    _hit_time.push_back(hitTime);
+	    _hit_KE.push_back(hitKE);
 	    _hit_uid.push_back(uid);
 	    _hit_pdg.push_back(pdg);
 	    _hit_volume.push_back(vol);
@@ -182,6 +186,7 @@ G4bool GeoFiberSensitiveDetector::ProcessHits(G4Step *aStep, G4TouchableHistory 
 	    G4VPhysicalVolume *thePhysical = theTouchable->GetVolume();
 	    aHit->SetLogV(thePhysical->GetLogicalVolume());
 	    G4AffineTransform aTrans = theTouchable->GetHistory()->GetTopTransform();
+			aHit->SetKE(hitKE);
 	    aTrans.Invert();
 	    aHit->SetRot(aTrans.NetRotation());
 	    aHit->SetPos(aTrans.NetTranslation());

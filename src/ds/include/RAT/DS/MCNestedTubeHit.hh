@@ -26,6 +26,10 @@ class MCNestedTubeHit : public TObject {
   virtual Double_t GetHitTime() const { return hitTime; }
   virtual void SetHitTime(Double_t _hitTime) { hitTime = _hitTime; }
 
+  /** Wavelength of photon hit on nested tube (nm). */
+  virtual Double_t GetHitKE() const { return hitKE; }
+  virtual void SetHitKE(Double_t _hitKE) { hitKE = _hitKE; }
+
   /** Location of photon hit (mm). */
   virtual TVector3 GetPosition() const { return pos; }
   virtual void SetPosition(const TVector3 &_pos) { pos = _pos; }
@@ -42,6 +46,7 @@ class MCNestedTubeHit : public TObject {
 
  protected:
   Double_t hitTime;
+  Double_t hitKE;
   TVector3 pos;
 
   Int_t hitID;

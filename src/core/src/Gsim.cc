@@ -628,6 +628,7 @@ void Gsim::AddMCNestedTubeHit(DS::MCNestedTube *rat_mcnt, const GeoFiberSensitiv
 
   rat_mchit->SetHitID(hit->GetID());
   rat_mchit->SetHitTime(hit->GetTime());
+  rat_mchit->SetHitKE(hit->GetKE());
 }
 
 void Gsim::SetStoreParticleTraj(const G4String &particleName, const bool &gDoStore) {

@@ -14,6 +14,7 @@ G4Allocator<GeoFiberSensitiveDetectorHit> GeoFiberSensitiveDetectorHitAllocator;
 GeoFiberSensitiveDetectorHit::GeoFiberSensitiveDetectorHit(G4int i, G4double t) {
   id = i;
   time = t;
+  KE = 0;
   pLogV = 0;
 }
 GeoFiberSensitiveDetectorHit::~GeoFiberSensitiveDetectorHit() { ; }
@@ -21,6 +22,7 @@ GeoFiberSensitiveDetectorHit::~GeoFiberSensitiveDetectorHit() { ; }
 GeoFiberSensitiveDetectorHit::GeoFiberSensitiveDetectorHit(const GeoFiberSensitiveDetectorHit &right) : G4VHit() {
   id = right.id;
   time = right.time;
+  KE = right.KE;
   pos = right.pos;
   rot = right.rot;
   pLogV = right.pLogV;
@@ -29,6 +31,7 @@ GeoFiberSensitiveDetectorHit::GeoFiberSensitiveDetectorHit(const GeoFiberSensiti
 const GeoFiberSensitiveDetectorHit &GeoFiberSensitiveDetectorHit::operator=(const GeoFiberSensitiveDetectorHit &right) {
   id = right.id;
   time = right.time;
+  KE = right.KE;
   pos = right.pos;
   rot = right.rot;
   pLogV = right.pLogV;

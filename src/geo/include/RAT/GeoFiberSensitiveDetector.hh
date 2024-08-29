@@ -33,6 +33,8 @@ class GeoFiberSensitiveDetector : public G4VSensitiveDetector
   /** hit energy deposition */
   std::vector<double> _hit_time;
   /** global time of the hit */
+  std::vector<double> _hit_KE;
+  /** wavelength of the hit */
   std::vector<int> _hit_uid;
   /** unique identifier code of the hit */
   std::vector<int> _hit_pdg;
